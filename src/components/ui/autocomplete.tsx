@@ -13,7 +13,7 @@ export interface AutocompleteProps {
 	initialOptions: Option[] | [];
 	buttonWidth?: string;
 	placeholderText?: string;
-	onValueChange: (newValue: string) => void; // Callback для возврата значения наверх
+	onValueChange: (newValue: string) => void;
 }
 
 export const Autocomplete = ({
@@ -27,7 +27,6 @@ export const Autocomplete = ({
 		initialOptions ?? []
 	);
 
-	// Обновляем опции при изменении initialOptions
 	useEffect(() => {
 		setOptions(initialOptions);
 	}, [initialOptions]);

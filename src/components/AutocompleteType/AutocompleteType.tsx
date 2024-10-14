@@ -9,14 +9,12 @@ export const AutocompleteType = ({
 	const [defaultOptions, setDefaultOptions] = useState<
 		AutoCompleteProps["options"]
 	>([]);
-	console.log(defaultOptions);
 
 	useEffect(() => {
-		// Проверка на наличие nameValue перед вызовом getTypeOptions
 		if (nameValue) {
 			getTypeOptions();
 		} else {
-			setDefaultOptions([]); // Очистим опции, если nameValue не задано
+			setDefaultOptions([]);
 		}
 	}, [nameValue]);
 

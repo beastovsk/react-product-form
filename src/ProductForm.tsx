@@ -71,8 +71,13 @@ const ProductForm = () => {
 	});
 
 	const onSubmit = (data) => {
-		console.log(data);
+		console.log({ ...data, productCode: `A2-${data.productCode}` });
 	};
+
+	const characteristics = useWatch({
+		control,
+		name: "characteristics",
+	});
 
 	return (
 		<form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-4">
@@ -90,7 +95,13 @@ const ProductForm = () => {
 			</div>
 			<div>
 				<label className="text-sm">Код товара</label>
-				<Input {...register("productCode")} placeholder="Код товара" />
+				<div className="flex items-center gap-2">
+					<h3>A2-</h3>{" "}
+					<Input
+						{...register("productCode")}
+						placeholder="Код товара"
+					/>{" "}
+				</div>
 				{errors.productCode && (
 					<p className="text-sm text-red-500 font-medium">
 						{errors.productCode.message}
@@ -107,12 +118,6 @@ const ProductForm = () => {
 				</Button>
 			</div>
 			{fields.map((field, index) => {
-				// Отслеживаем изменение значения name в характеристике
-				const nameValue = useWatch({
-					control,
-					name: `characteristics.${index}.name`,
-				});
-
 				return (
 					<div
 						key={field.id}
